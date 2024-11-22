@@ -26,6 +26,9 @@ jobs:
     - name: Build Hugo Site
       run: hugo --minify
 
+    - name: List Files for Debugging
+      run: ls -R
+      
     # Deploy to main branch
     - name: Deploy to Main Branch
       env:
