@@ -1,0 +1,51 @@
+name: Deploy Hugo Site
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the source branch
+    - name: Checkout Source Branch
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Install Hugo
+    - name: Install Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+
+    # Build the Hugo site
+    - name: Build Hugo Site
+      run: hugo --minify
+
+    # Deploy to main branch
+    - name: Deploy to Main Branch
+      env:
+        ACTIONS_DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Configure Git
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        # Switch to a clean branch with the build output
+        git checkout --orphan main
+        git reset --hard
+        git clean -df
+
+        # Copy the public folder to the root of the repository
+        cp -r public/* .
+
+        # Add and commit the static files
+        git add .
+        git commit -m "Deploy from source branch"
+
+        # Force push to the main branch
+        git push --force origin main
