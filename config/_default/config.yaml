@@ -6,6 +6,7 @@ title: "Eclipse SUMO - Simulation of Urban MObility"
 disableKinds: ["taxonomyTerm"]
 theme: "sumo-theme"
 enableGitInfo: true
+publishDir = "public"
 
 ########################### Default Parameters #############################
 
