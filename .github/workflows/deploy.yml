@@ -40,6 +40,7 @@ jobs:
       run: |
         mkdir -p $HOME/temp
         cp -r public/* $HOME/temp/
+        cp README.md $HOME/temp/
 
     - name: Debug Backup Files
       run: |
