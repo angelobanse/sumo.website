@@ -23,25 +23,36 @@ jobs:
     - name: Build Hugo Site
       run: hugo --minify
 
-    - name: Debug Directory
+    - name: Debug Directory After Build
       run: ls -R
+
+    - name: Create Temporary Backup
+      run: |
+        mkdir -p temp
+        if [ -d "public" ]; then
+          cp -r public/* temp/
+        else
+          echo "Error: public directory does not exist."
+          exit 1
+        fi
 
     - name: Deploy to Main Branch
       env:
         ACTIONS_DEPLOY_TOKEN: ${{ secrets.ACTIONS_DEPLOY_TOKEN }}
       run: |
-        # Backup generated files
-        mkdir temp
-        cp -r public/* temp/
-
-        # Switch to main branch
+        # Switch to a clean branch
         git checkout --orphan main
         git reset --hard
         git clean -df
 
-        # Move files to root directory
-        cp -r temp/* .
-        rm -rf temp
+        # Move files from temp to the root
+        if [ -d "temp" ]; then
+          cp -r temp/* .
+          rm -rf temp
+        else
+          echo "Error: temp directory does not exist."
+          exit 1
+        fi
 
         # Git configuration
         git config --global user.name "github-actions[bot]"
