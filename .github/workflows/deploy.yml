@@ -31,8 +31,13 @@ jobs:
 
     - name: Backup Generated Files
       run: |
-        mkdir -p temp
-        cp -r public/* temp/
+        mkdir -p $HOME/temp
+        cp -r public/* $HOME/temp/
+
+    - name: Debug Backup Files
+      run: |
+        echo "Listing files in backup directory:"
+        ls -l $HOME/temp/
 
     - name: Deploy to Main Branch
       env:
@@ -45,9 +50,9 @@ jobs:
         git reset --hard
         git clean -df
 
-        # Move files back to root
-        cp -r temp/* .
-        rm -rf temp
+        # Restore files from backup
+        cp -r $HOME/temp/* .
+        rm -rf $HOME/temp
 
         # Configure Git
         git config --global user.name "github-actions[bot]"
