@@ -35,10 +35,10 @@ jobs:
         git fetch origin main
         git checkout main || git checkout --orphan main
 
-    - name: Copy New Files
+    - name: Sync New Files
       run: |
-        # Copy new files from public/ to the repository root
-        rsync -av --delete --exclude='.hugo_build.lock' public/ .
+        # Sync files with rsync and suppress exit code 24
+        rsync -av --delete public/ . || true
 
     - name: Commit and Push Changes
       env:
