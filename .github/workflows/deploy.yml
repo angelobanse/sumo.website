@@ -70,5 +70,5 @@ jobs:
         git commit -m "Deploying: $COMMIT_MESSAGE"
         git push --force origin main
 
-    env:
+      env:
         COMMIT_MESSAGE: ${{ env.commit_message }}
