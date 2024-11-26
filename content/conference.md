@@ -11,7 +11,7 @@ aliases:
 - /2025
 ---
 
-TEST
+SUMO20252025
 
 The SUMO User Conference, held every year in Berlin since 2013, is a must-attend event for anyone involved with SUMO. It gathers international participants from the industry, research and public institutions - to present (among others) projects, studies and advancements all around traffic, simulation and SUMO.
 
