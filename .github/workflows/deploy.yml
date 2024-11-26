@@ -38,7 +38,7 @@ jobs:
     - name: Copy New Files
       run: |
         # Copy new files from public/ to the repository root
-        rsync -av --delete public/ .
+        rsync -av --delete --exclude='.hugo_build.lock' public/ .
 
     - name: Commit and Push Changes
       env:
