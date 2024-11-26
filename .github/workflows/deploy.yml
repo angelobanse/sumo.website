@@ -29,6 +29,13 @@ jobs:
           exit 1
         fi
 
+    - name: Get Commit Message
+      id: commit_message
+      run: |
+        # Extract the commit message from the event payload
+        COMMIT_MSG=$(jq -r '.commits[-1].message' "$GITHUB_EVENT_PATH")
+        echo "commit_message=${COMMIT_MSG}" >> $GITHUB_ENV
+  
     - name: Backup Generated Files
       run: |
         mkdir -p $HOME/temp
@@ -60,5 +67,8 @@ jobs:
 
         # Commit and push changes
         git add .
-        git commit -m "Deploy from source branch"
+        git commit -m "Deploying: $COMMIT_MESSAGE"
         git push --force origin main
+
+    env:
+        COMMIT_MESSAGE: ${{ env.commit_message }}
