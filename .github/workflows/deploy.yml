@@ -49,6 +49,7 @@ jobs:
     - name: Deploy to Main Branch
       env:
         ACTIONS_DEPLOY_TOKEN: ${{ secrets.ACTIONS_DEPLOY_TOKEN }}
+        COMMIT_MESSAGE: ${{ env.commit_message }}
       run: |
         # Switch to main branch
         git checkout --orphan main
@@ -69,6 +70,4 @@ jobs:
         git add .
         git commit -m "Deploying: $COMMIT_MESSAGE"
         git push --force origin main
-
-      env:
-        COMMIT_MESSAGE: ${{ env.commit_message }}
+        
