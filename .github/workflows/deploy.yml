@@ -1,4 +1,4 @@
-name: Deploy Hugo Site
+name: Deploy Hugo Site (Incremental Updates)
 
 on:
   push:
@@ -29,36 +29,29 @@ jobs:
           exit 1
         fi
 
-    - name: Backup Generated Files
+    - name: Checkout Main Branch
       run: |
-        mkdir -p $HOME/temp
-        cp -r public/* $HOME/temp/
+        # Fetch and checkout the main branch
+        git fetch origin main
+        git checkout main || git checkout --orphan main
 
-    - name: Debug Backup Files
+    - name: Copy New Files
       run: |
-        echo "Listing files in backup directory:"
-        ls -l $HOME/temp/
+        # Copy new files from public/ to the repository root
+        rsync -av --delete public/ .
 
-    - name: Deploy to Main Branch
+    - name: Commit and Push Changes
       env:
         ACTIONS_DEPLOY_TOKEN: ${{ secrets.ACTIONS_DEPLOY_TOKEN }}
       run: |
-        # Switch to main branch
-        git checkout --orphan main
-
-        # Clean up and reset branch
-        git reset --hard
-        git clean -df
-
-        # Restore files from backup
-        cp -r $HOME/temp/* .
-        rm -rf $HOME/temp
-
-        # Configure Git
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-        # Commit and push changes
-        git add .
-        git commit -m "Deploy from source branch"
-        git push --force origin main
+        # Check for changes and commit if necessary
+        if [ -n "$(git status --porcelain)" ]; then
+          git add .
+          git commit -m "Deploy updates from source branch"
+          git push origin main
+        else
+          echo "No changes to commit."
+        fi
