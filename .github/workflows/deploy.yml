@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        submodules: true # Include themes if needed
+        submodules: true
 
     - name: Install Hugo
       uses: peaceiris/actions-hugo@v2
@@ -39,11 +39,9 @@ jobs:
     - name: Backup Generated Files and copying relevant files
       run: |
         mkdir -p $HOME/temp
-        mkdir -p $HOME/temp/.github/workflows
         cp -r public/* $HOME/temp/
         cp README.md $HOME/temp/
         cp lychee.toml $HOME/temp/
-        cp .github/workflows/linkcheck.yml $HOME/temp/.github/workflows/
 
     - name: Debug Backup Files
       run: |
@@ -74,4 +72,13 @@ jobs:
         git add .
         git commit -m "Deploying: $COMMIT_MESSAGE"
         git push --force origin main
-        
+
+    - name: Trigger the linkcheck workflow
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/linkcheck.yml/dispatches \
+            -d '{"ref":"main"}'
