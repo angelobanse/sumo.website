@@ -36,12 +36,13 @@ jobs:
         COMMIT_MSG=$(jq -r '.commits[-1].message' "$GITHUB_EVENT_PATH")
         echo "commit_message=${COMMIT_MSG}" >> $GITHUB_ENV
   
-    - name: Backup Generated Files
+    - name: Backup Generated Files and copying relevant files
       run: |
         mkdir -p $HOME/temp
         mkdir -p $HOME/temp/.github/workflows
         cp -r public/* $HOME/temp/
         cp README.md $HOME/temp/
+        cp lychee.toml $HOME/temp/
         cp .github/workflows/linkcheck.yml $HOME/temp/.github/workflows/
 
     - name: Debug Backup Files
