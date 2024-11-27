@@ -41,7 +41,7 @@ jobs:
         mkdir -p $HOME/temp
         cp -r public/* $HOME/temp/
         cp README.md $HOME/temp/
-        cp /.github/workflows/linkcheck.yml $HOME/temp/.github/workflows/linkcheck.yml
+        cp .github/workflows/linkcheck.yml $HOME/temp/.github/workflows/linkcheck.yml
 
     - name: Debug Backup Files
       run: |
