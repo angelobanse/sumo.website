@@ -63,7 +63,7 @@ jobs:
         git clean -df
 
         # Restore files from backup
-        cp -r $HOME/temp/* .
+        rsync -av $HOME/temp/* . --exclude=$HOME/temp/.git
         rm -rf $HOME/temp
 
         # Configure Git
