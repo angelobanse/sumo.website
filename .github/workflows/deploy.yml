@@ -39,9 +39,10 @@ jobs:
     - name: Backup Generated Files
       run: |
         mkdir -p $HOME/temp
+        mkdir -p $HOME/temp/.github/workflows
         cp -r public/* $HOME/temp/
         cp README.md $HOME/temp/
-        cp .github/workflows/linkcheck.yml $HOME/temp/.github/workflows/linkcheck.yml
+        cp .github/workflows/linkcheck.yml $HOME/temp/.github/workflows/
 
     - name: Debug Backup Files
       run: |
