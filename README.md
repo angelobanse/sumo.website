@@ -53,7 +53,7 @@ This should generate all the necessary HTML and CSS files inside the `public` fo
 
 ### Contributing
 
-Only modify the files inside the `source` branch. After pushing, the static files will be generated automatically by the ["deploy" workflow](https://github.com/eclipse-sumo/sumo.website/blob/source/.github/workflows/deploy.yml), and committed to the `main` branch (this is an Eclipse infrastructure requirement).
+Only modify the files inside the `source` branch. After pushing, the static files will be generated automatically by the ["deploy-static-pages" workflow](https://github.com/eclipse-sumo/sumo.website/blob/source/.github/workflows/deploy.yml), and committed to the `main` branch (this is an Eclipse infrastructure requirement).
 
 ## Other links
 - [SUMO repository](https://github.com/eclipse-sumo/sumo)
