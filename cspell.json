@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-US",
+  "files": [
+    "**/*.md"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "sumo-dictionary",
+      "path": "cspell-sumo-dictionary.txt"
+    }
+  ],
+  "dictionaries": ["sumo-dictionary"]
+}
