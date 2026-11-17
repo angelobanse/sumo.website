@@ -1,7 +1,7 @@
 <!--
 MkDocs version : 1.6.1
 Build Date UTC : 01 January 1970 00:00:00
-Last edit: 16 November 2026
+Last edit: 17 November 2026
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -619,7 +619,7 @@ Last edit: 16 November 2026
 <li>Persons are no longer listed before their departure in <em>traci.person.getIDList()</em> Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5674" title="GitHub Issue eclipse-sumo/sumo #5674">#5674</a> (regression in 1.1.0)</li>
 <li>Fixed crash when using parallel rerouting with TraCI. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5553" title="GitHub Issue eclipse-sumo/sumo #5553">#5553</a></li>
 <li>Function <em>traci.vehicle.setStop</em> now correctly updates an existing stop when setting a new <em>until</em>-value. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5712" title="GitHub Issue eclipse-sumo/sumo #5712">#5712</a></li>
-<li>TraaS function <em>SumoTraciConection.close()</em> now cleanly disconnects from the SUMO server. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/4962" title="GitHub Issue eclipse-sumo/sumo #4962">#4962</a></li>
+<li>TraaS function <em>SumoTraciConnection.close()</em> now cleanly disconnects from the SUMO server. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/4962" title="GitHub Issue eclipse-sumo/sumo #4962">#4962</a></li>
 <li>Fixed several issues with position conversions when the edge has a length different from the geometrical distance. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5780" title="GitHub Issue eclipse-sumo/sumo #5780">#5780</a></li>
 <li>Libsumo now supports getAllSubscriptionResults</li>
 <li>Function <em>traci.vehicle.moveTo</em> can now move vehicles onto internal lanes. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5932" title="GitHub Issue eclipse-sumo/sumo #5932">#5932</a></li>
@@ -651,7 +651,7 @@ Last edit: 16 November 2026
 <li>Saved states now include lane ids and only the lanes with traffic on them. This reduces state file size and also permits loading state files with a modified network. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5872" title="GitHub Issue eclipse-sumo/sumo #5872">#5872</a></li>
 <li>Initial "pseudo routes" (consisting of start and end edge only) are only written optionally. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5639" title="GitHub Issue eclipse-sumo/sumo #5639">#5639</a></li>
 <li>Traffic lights with type delay_based now use a default detection range of 100m (instead of using the whole lane length). This greatly improves efficiency by avoiding interference from far-away upstream junctions. The default range can be set using the new option <strong>--tls.delay_based.detector-range</strong> <a href="/docs/Basics/Notation.html#referenced_data_types"><em>&lt;FLOAT&gt;</em></a>. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5897" title="GitHub Issue eclipse-sumo/sumo #5897">#5897</a></li>
-<li>Added battery model parameter "recuperationEfficencyByDecel" to vary the recuperation efficiency based on the deceleration level. Thanks to Sagaama Insaf for the contribution. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5675" title="GitHub Issue eclipse-sumo/sumo #5675">#5675</a></li>
+<li>Added battery model parameter "recuperationEfficiencyByDecel" to vary the recuperation efficiency based on the deceleration level. Thanks to Sagaama Insaf for the contribution. Issue <a class="gh-link gh-issue" href="https://github.com/eclipse-sumo/sumo/issues/5675" title="GitHub Issue eclipse-sumo/sumo #5675">#5675</a></li>
 </ul>
 </li>
 </ul>
@@ -1108,7 +1108,7 @@ Last edit: 16 November 2026
 
         <footer class="col-md-12">
           
-            <br><small><i>This page was last edited on: 16 November 2026</i></small>
+            <br><small><i>This page was last edited on: 17 November 2026</i></small>
           
           <hr>
             <p>Copyright &copy; 2001-2026 German Aerospace Center (DLR) and others.</p>
